@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd668fc6284fe94c8aa5569bb5eb563, type: 3}
+  m_Name: GOESystemConfig
+  m_EditorClassIdentifier: 
+  groups:
+  - {fileID: 11400000, guid: 5195ca26a6db69344909a3b4c90ce08a, type: 2}
+  - {fileID: 11400000, guid: 964bd749203ae6c4ab8e006d36262d33, type: 2}
+  spawnCountsPerGroup: 070000002c010000
+  spawnBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 10, y: 10, z: 10}
+  cellSize: 5
+  gridDimensions:
+    x: 20
+    y: 20
+    z: 5
+  enableBoundaries: 1
+  movementBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 25, y: 25, z: 25}
+  boundaryBehavior: 0

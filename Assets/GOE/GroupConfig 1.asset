@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119e16d719efe6b4f8b70b8fa96b0cbb, type: 3}
+  m_Name: GroupConfig 1
+  m_EditorClassIdentifier: 
+  groupName: 
+  groupID: 1
+  prefab: {fileID: 1314303404617636540, guid: 69a77a82094535c4a96b1a05667cf410, type: 3}
+  baseMaterial: {fileID: 2100000, guid: e535f1c62ad20ae479a60b403ee0fe61, type: 2}
+  baseColor: {r: 0.13237208, g: 0.326741, b: 0.4339623, a: 1}
+  colorVariationRange: 0.2
+  scaleRange: {x: 0.14, y: 1.2}
+  impulseStrength: 0.6
+  impulseStrengthVariation: 1
+  impulseIntervalRange: {x: 3, y: 5}
+  damping: 0.864
+  dampingVariation: 0
+  baseAnimSpeed: 2
+  animSpeedVariation: 0.5
+  constrainX: 0
+  constrainedXValue: 0
+  constrainY: 0
+  constrainedYValue: 0
+  constrainZ: 1
+  constrainedZValue: 0
+  preset2DGround: 0
+  preset2DSideScroll: 0
+  contactRules: []

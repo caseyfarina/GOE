@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119e16d719efe6b4f8b70b8fa96b0cbb, type: 3}
+  m_Name: GroupConfig
+  m_EditorClassIdentifier: 
+  groupName: 
+  groupID: 0
+  prefab: {fileID: 1314303404617636540, guid: 69a77a82094535c4a96b1a05667cf410, type: 3}
+  baseMaterial: {fileID: 2100000, guid: e535f1c62ad20ae479a60b403ee0fe61, type: 2}
+  baseColor: {r: 0.74213827, g: 0.25904816, b: 0.25904816, a: 1}
+  colorVariationRange: 0.2
+  scaleRange: {x: 3, y: 3}
+  impulseStrength: 54.22
+  impulseStrengthVariation: 56.92
+  impulseIntervalRange: {x: 1, y: 5}
+  damping: 0.8
+  dampingVariation: 0
+  baseAnimSpeed: 2
+  animSpeedVariation: 0.5
+  constrainX: 0
+  constrainedXValue: 0
+  constrainY: 0
+  constrainedYValue: 0
+  constrainZ: 1
+  constrainedZValue: 0
+  preset2DGround: 0
+  preset2DSideScroll: 0
+  contactRules:
+  - targetGroupID: 1
+    response: 0
+    responseStrength: 3.88
+    activationDistance: 9.9
+  - targetGroupID: 0
+    response: 1
+    responseStrength: 3.88
+    activationDistance: 13.8
