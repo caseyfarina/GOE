@@ -30,10 +30,35 @@ namespace GOE
         public float damping = 0.92f;
         [Range(0f, 0.2f)]
         public float dampingVariation = 0.05f;
-        
+
+        [Header("DOTS Physics - Mass & Forces")]
+        [Tooltip("Mass for F=ma physics (higher = harder to accelerate)")]
+        public float mass = 1.0f;
+        [Tooltip("Maximum force magnitude to prevent instability")]
+        public float maxForce = 50.0f;
+
+        [Header("DOTS Physics - Collision Zone (Short Range)")]
+        [Tooltip("Inner zone radius for collision avoidance (always repulsive)")]
+        public float collisionRadius = 1.0f;
+        [Tooltip("Strength of inverse-square repulsion force")]
+        public float collisionStrength = 20.0f;
+
+        [Header("DOTS Physics - Interaction Zone (Long Range)")]
+        [Tooltip("Outer zone radius for interaction forces")]
+        public float interactionRadius = 5.0f;
+        [Tooltip("Interaction strength (positive=attract, negative=repel)")]
+        public float interactionStrength = 5.0f;
+
         [Header("Animation")]
         public float baseAnimSpeed = 2f;
         public float animSpeedVariation = 0.5f;
+
+        // Computed properties for easier access
+        public float minScale => scaleRange.x;
+        public float maxScale => scaleRange.y;
+        public float minImpulseInterval => impulseIntervalRange.x;
+        public float maxImpulseInterval => impulseIntervalRange.y;
+        public float animationSpeed => baseAnimSpeed;
 
         [Header("Movement - Constraints")]
         [Tooltip("Lock X axis (left/right) to a fixed value")]
