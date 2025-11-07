@@ -28,6 +28,10 @@ namespace GOE
         public float minImpulseInterval;
         public float maxImpulseInterval;
 
+        // Lifetime system
+        public float lifetime;           // Total lifetime in seconds (0 = infinite)
+        public float age;                // Current age in seconds
+
         /// <summary>
         /// Creates physics properties with default values
         /// </summary>
@@ -52,7 +56,11 @@ namespace GOE
                 minImpulseInterval = 1.0f,
                 maxImpulseInterval = 2.0f,
                 impulseTimer = 1.5f,
-                impulseInterval = 1.5f
+                impulseInterval = 1.5f,
+
+                // Lifetime (0 = infinite)
+                lifetime = 0f,
+                age = 0f
             };
         }
     }

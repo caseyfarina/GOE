@@ -169,5 +169,39 @@ namespace GOE
                 animPhases[index] = phase - math.floor(phase / (2f * math.PI)) * (2f * math.PI);
             }
         }
+
+        /// <summary>
+        /// Update entity lifetimes and deactivate expired entities
+        /// </summary>
+        [BurstCompile]
+        public struct UpdateLifetimeJob : IJobParallelFor
+        {
+            public NativeArray<PhysicsProperties> properties;
+            public NativeArray<bool> isActive;
+            public float deltaTime;
+
+            public void Execute(int index)
+            {
+                if (!isActive[index])
+                    return;
+
+                PhysicsProperties props = properties[index];
+
+                // Skip if infinite lifetime (lifetime == 0)
+                if (props.lifetime <= 0f)
+                    return;
+
+                // Increment age
+                props.age += deltaTime;
+
+                // Deactivate if expired
+                if (props.age >= props.lifetime)
+                {
+                    isActive[index] = false;
+                }
+
+                properties[index] = props;
+            }
+        }
     }
 }

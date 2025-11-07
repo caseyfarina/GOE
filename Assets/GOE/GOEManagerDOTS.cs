@@ -193,19 +193,30 @@ namespace GOE
             };
             JobHandle animHandle = updateAnimJob.Schedule(entityCount, jobBatchSize, boundaryHandle);
 
-            // Phase 9: Synchronize transforms (parallel, Burst-compiled)
+            // Phase 9: Update lifetimes and deactivate expired entities
+            var updateLifetimeJob = new GOEIntegrationSystem.UpdateLifetimeJob
+            {
+                properties = properties,
+                isActive = isActive,
+                deltaTime = dt
+            };
+            JobHandle lifetimeHandle = updateLifetimeJob.Schedule(entityCount, jobBatchSize, animHandle);
+
+            // Phase 10: Synchronize transforms (parallel, Burst-compiled)
             var syncTransformJob = new SyncTransformsJob
             {
                 positions = positions,
                 rotations = rotations,
-                scaleVariations = scaleVariations
+                scaleVariations = scaleVariations,
+                isActive = isActive
             };
-            JobHandle syncHandle = syncTransformJob.Schedule(transformAccessArray, animHandle);
+            JobHandle syncHandle = syncTransformJob.Schedule(transformAccessArray, lifetimeHandle);
 
             // Complete all jobs
             syncHandle.Complete();
 
-            // Phase 10: Update visual properties (main thread - MaterialPropertyBlocks)
+            // Phase 11: Despawn expired entities and update visual properties (main thread)
+            DespawnExpiredEntities();
             UpdateVisualProperties();
         }
 
@@ -230,12 +241,34 @@ namespace GOE
             [ReadOnly] public NativeArray<float3> positions;
             [ReadOnly] public NativeArray<quaternion> rotations;
             [ReadOnly] public NativeArray<float> scaleVariations;
+            [ReadOnly] public NativeArray<bool> isActive;
 
             public void Execute(int index, TransformAccess transform)
             {
+                // Hide inactive entities by moving them far away
+                if (!isActive[index])
+                {
+                    transform.position = new float3(0, -10000, 0); // Move far below
+                    return;
+                }
+
                 transform.position = positions[index];
                 transform.rotation = rotations[index];
                 transform.localScale = Vector3.one * scaleVariations[index];
+            }
+        }
+
+        private void DespawnExpiredEntities()
+        {
+            for (int i = 0; i < entityCount; i++)
+            {
+                if (!isActive[i] && entityObjects[i] != null)
+                {
+                    // Destroy GameObject
+                    Destroy(entityObjects[i]);
+                    entityObjects[i] = null;
+                    entityViews[i] = null;
+                }
             }
         }
 
@@ -423,6 +456,11 @@ namespace GOE
             physProps.minImpulseInterval = group.minImpulseInterval;
             physProps.maxImpulseInterval = group.maxImpulseInterval;
             physProps.impulseTimer = UnityEngine.Random.Range(physProps.minImpulseInterval, physProps.maxImpulseInterval);
+
+            // Lifetime
+            physProps.lifetime = group.lifetime > 0 ? group.lifetime + UnityEngine.Random.Range(-group.lifetimeVariation, group.lifetimeVariation) : 0f;
+            physProps.age = 0f;
+
             properties[index] = physProps;
 
             // Initialize metadata

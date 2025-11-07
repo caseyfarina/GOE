@@ -52,6 +52,12 @@ namespace GOE
         [Tooltip("Interaction strength (positive=attract, negative=repel)")]
         public float interactionStrength = 5.0f;
 
+        [Header("Lifetime")]
+        [Tooltip("Entity lifetime in seconds (0 = infinite)")]
+        public float lifetime = 0f;
+        [Tooltip("Random variation in lifetime (±seconds)")]
+        public float lifetimeVariation = 0f;
+
         [Header("Animation")]
         public float baseAnimSpeed = 2f;
         public float animSpeedVariation = 0.5f;
