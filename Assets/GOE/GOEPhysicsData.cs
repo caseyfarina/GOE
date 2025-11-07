@@ -49,10 +49,10 @@ namespace GOE
 
                 // Impulse movement
                 impulseStrength = 3.0f,
-                minImpulseInterval = 3.0f,
-                maxImpulseInterval = 5.0f,
-                impulseTimer = 3.0f,
-                impulseInterval = 3.0f
+                minImpulseInterval = 1.0f,
+                maxImpulseInterval = 2.0f,
+                impulseTimer = 1.5f,
+                impulseInterval = 1.5f
             };
         }
     }

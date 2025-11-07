@@ -21,9 +21,12 @@ namespace GOE
         public Vector2 scaleRange = new Vector2(0.8f, 1.2f);
         
         [Header("Movement - Impulse")]
+        [Tooltip("Strength of forward impulse bursts")]
         public float impulseStrength = 5f;
+        [Tooltip("Random variation in impulse strength")]
         public float impulseStrengthVariation = 1f;
-        public Vector2 impulseIntervalRange = new Vector2(3f, 5f);
+        [Tooltip("Random interval between impulse bursts (min, max in seconds)")]
+        public Vector2 impulseIntervalRange = new Vector2(1f, 2f);
         
         [Header("Movement - Damping")]
         [Range(0f, 1f)]
